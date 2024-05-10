@@ -1,0 +1,25 @@
+﻿syntax = "proto3";
+
+option csharp_namespace = "GrpcServiceTranscoding";
+
+package Authorize;
+
+// The greeting service definition.
+service Authorize {
+  rpc Authorize (Credentials) returns (AuthenticationTokens) {
+  }
+}
+
+// The request message containing the user's name.
+message Credentials {
+  string Username = 1;
+  string Password = 2;
+}
+
+// The response message containing the greetings.
+message AuthenticationTokens {
+  int32 Id = 1;
+  string AccessToken = 2;
+}
+
+
