@@ -1,4 +1,4 @@
-﻿using Explorer.BuildingBlocks.Core.UseCases;
+﻿/*using Explorer.BuildingBlocks.Core.UseCases;
 using Explorer.Stakeholders.API.Internal;
 using Explorer.Stakeholders.Core.Domain.RepositoryInterfaces;
 using FluentResults;
@@ -26,4 +26,4 @@ public class InternalProblemService : IInternalProblemService
             return Result.Fail(FailureCode.NotFound).WithError(e.Message);
         }
     }
-}
+}*/
