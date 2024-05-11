@@ -9,31 +9,6 @@ public class StakeholderProfile : Profile
 {
     public StakeholderProfile()
     {
-        CreateMap<ClubJoinRequestSendDto, ClubJoinRequest>()
-            .ConstructUsing(src => new ClubJoinRequest(src.TouristId, src.ClubId, DateTime.UtcNow, ClubJoinRequestStatus.Pending));
-
-        CreateMap<ClubJoinRequest, ClubJoinRequestCreatedDto>()
-            .ConstructUsing(src => new ClubJoinRequestCreatedDto { Id = src.Id, TouristId = src.TouristId, ClubId = src.ClubId, RequestedAt = src.RequestedAt, Status = src.GetPrimaryStatusName() });
-
-        CreateMap<ClubJoinRequest, ClubJoinRequestByTouristDto>()
-            .ConstructUsing(src => new ClubJoinRequestByTouristDto { Id = src.Id, ClubId = src.ClubId, ClubName = src.Club.Name, RequestedAt = src.RequestedAt, Status = src.GetPrimaryStatusName() });
-
-        CreateMap<ClubJoinRequest, ClubJoinRequestByClubDto>()
-            .ConstructUsing(src => new ClubJoinRequestByClubDto { Id = src.Id, TouristId = src.Tourist.Id, TouristName = src.Tourist.Username, RequestedAt = src.RequestedAt, Status = src.GetPrimaryStatusName() });
-
-        CreateMap<ClubInvitation, ClubInvitationDto>().ReverseMap()
-            .ConstructUsing(dto => new ClubInvitation(dto.ClubId, dto.TouristId));
-
-        CreateMap<ClubInvitationCreatedDto, ClubInvitation>().ReverseMap()
-            .ConstructUsing(i => new ClubInvitationCreatedDto() { Id = i.Id, ClubId = i.ClubId, TouristId = i.TouristId });
-
-        CreateMap<ClubInvitationWithClubAndOwnerName, ClubInvitation>().ReverseMap()
-            .ConstructUsing(invitation => new ClubInvitationWithClubAndOwnerName() { Id = invitation.Id, ClubName = invitation.Club.Name, OwnerUsername = invitation.Club.Owner.Username });
-
-        CreateMap<ClubResponseDto, Club>().ReverseMap();
-        CreateMap<Club, ClubResponseWithOwnerDto>()
-            .ConstructUsing(src => new ClubResponseWithOwnerDto { Id = src.Id, OwnerId = src.OwnerId, Username = src.Owner.Username, Name = src.Name, Description = src.Description, Image = src.Image });
-        CreateMap<ClubCreateDto, Club>().ReverseMap();
         CreateMap<ProblemAnswerDto, ProblemAnswer>().ReverseMap();
         CreateMap<Person, PersonResponseDto>().ConstructUsing(src => new PersonResponseDto
         {

@@ -1,5 +1,4 @@
-﻿using Explorer.Payments.API.Public;
-using Explorer.Stakeholders.API.Dtos;
+﻿using Explorer.Stakeholders.API.Dtos;
 using Explorer.Stakeholders.API.Public;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,12 +14,12 @@ namespace Explorer.API.Controllers;
 public class AuthenticationController : BaseApiController
 {
     private readonly IAuthenticationService _authenticationService;
-    private readonly IWalletService _walletService;
+   // private readonly IWalletService _walletService;
 
-    public AuthenticationController(IAuthenticationService authenticationService, IWalletService walletService)
+    public AuthenticationController(IAuthenticationService authenticationService) //IWalletService walletService)
     {
         _authenticationService = authenticationService;
-        _walletService = walletService;
+        //_walletService = walletService;
     }
 
     [HttpPost]
@@ -29,7 +28,7 @@ public class AuthenticationController : BaseApiController
         var result = _authenticationService.RegisterTourist(account);
         if(result.IsSuccess && !result.IsFailed)
         {
-            _walletService.Create(new Payments.API.Dtos.WalletCreateDto(result.Value.Id));
+            //_walletService.Create(new Payments.API.Dtos.WalletCreateDto(result.Value.Id));
         }
         return CreateResponse(result);
     }
