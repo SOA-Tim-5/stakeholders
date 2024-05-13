@@ -1,4 +1,5 @@
-﻿using Explorer.Stakeholders.API.Public;
+﻿using Explorer.Stakeholders.API.Dtos;
+using Explorer.Stakeholders.API.Public;
 using Grpc.Core;
 using GrpcServiceTranscoding;
 
@@ -15,17 +16,18 @@ namespace Explorer.API.Controllers
             _authenticationService = authenticationService;
         }
 
-        public override Task<AuthenticationTokens> Authorize(Credentials request,
+        public override async Task<AuthenticationTokens> Authorize(Credentials request,
             ServerCallContext context)
         {
-            var credentials = new Stakeholders.API.Dtos.CredentialsDto { Password = request.Password, Username  = request.Username };
+            var credentials = new Stakeholders.API.Dtos.CredentialsDto { Username  = request.Username, Password = request.Password };
             var result = _authenticationService.Login(credentials);
-           
-            return Task.FromResult(new AuthenticationTokens
+            var task = new AuthenticationTokens
             {
                 Id = (int)result.Value.Id,
                 AccessToken = result.Value.AccessToken,
-            });
+            };
+
+            return task;
         }
     }
 }

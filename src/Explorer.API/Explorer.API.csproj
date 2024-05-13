@@ -17,7 +17,7 @@
     <None Remove="Controllers\Author\**" />
     <None Remove="Controllers\Tourist\**" />
   </ItemGroup>
-
+    
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
       <PrivateAssets>all</PrivateAssets>

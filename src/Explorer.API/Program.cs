@@ -39,5 +39,8 @@ app.Run();
 // Required for automated tests
 namespace Explorer.API
 {
-    public partial class Program { }
+    public partial class Program { 
+    }
+    
+
 }
