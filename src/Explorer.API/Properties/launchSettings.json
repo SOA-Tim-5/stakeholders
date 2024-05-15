@@ -8,22 +8,22 @@
             "sslPort": 44332
         }
     },
-    "profiles": /*
-        "IIS Express": {
-            "commandName": "IISExpress",
-            "launchBrowser": true,
-            "launchUrl": "swagger",
-            "environmentVariables": {
-                "ASPNETCORE_ENVIRONMENT": "Development"
-            }
-        */
+    "profiles": {
+    "IIS Express": {
+        "commandName": "IISExpress",
+        "launchBrowser": true,
+        "launchUrl": "swagger",
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development"
+        }
+    },
         "WebApplication1": {
             "commandName": "Project",
             "launchBrowser": true,
             "environmentVariables": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
-            "applicationUrl": "https://0.0.0.0:44332;http://0.0.0.0:51712/",
+            "applicationUrl": "https://localhost:44332;http://localhost:51712/",
             "sslPort": 44332
         }
     }
