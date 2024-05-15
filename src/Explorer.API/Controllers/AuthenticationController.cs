@@ -33,7 +33,7 @@ public class AuthenticationController : BaseApiController
         return CreateResponse(result);
     }
 
-    [HttpPost("login")]
+    //[HttpPost("login")]
     public ActionResult<AuthenticationTokensDto> Login([FromBody] CredentialsDto credentials)
     {
         var result = _authenticationService.Login(credentials);

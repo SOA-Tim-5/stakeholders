@@ -24,17 +24,15 @@ public class UserDatabaseRepository : CrudDatabaseRepository<User, StakeholdersC
         return entity;
     }
 
-    public PagedResult<User> GetPagedByAdmin(int page, int pageSize, long adminId)
+    public List<User> GetPagedByAdmin(int page, int pageSize, long adminId)
     {
-        var task = _dbSet.Where(x => x.Id != adminId).GetPagedById(page, pageSize);
-        task.Wait();
-        return task.Result;
+        var task = _dbSet.Where(x => x.Id != adminId);
+        return task.ToList();
     }
-    public PagedResult<User> SearchUsers(int page, int pageSize, string searchUsername, long id)
+    public List<User> SearchUsers(int page, int pageSize, string searchUsername, long id)
     {
-        var task = _dbSet.Where(x => x.Username.ToLower().StartsWith(searchUsername.ToLower()) && x.Role != UserRole.Administrator && x.Id != id).GetPagedById(page, pageSize);
-        task.Wait();
-        return task.Result;
+        var task = _dbSet.Where(x => x.Username.ToLower().StartsWith(searchUsername.ToLower()) && x.Role != UserRole.Administrator && x.Id != id);
+        return task.ToList();
     }
     /*
     public Result<PagedResult<User>> GetPagedFollowersByUserId(int page, int pageSize, long userId)
@@ -93,4 +91,10 @@ public class UserDatabaseRepository : CrudDatabaseRepository<User, StakeholdersC
         _dbContext.SaveChanges();
         return user;
     }
+
+    PagedResult<User> IUserRepository.GetPagedByAdmin(int page, int pageSize, long adminId)
+    {
+        throw new NotImplementedException();
+    }
+
 }
