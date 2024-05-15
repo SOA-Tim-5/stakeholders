@@ -46,14 +46,14 @@ public class PersonController : BaseApiController
         return CreateResponse(result);
     }
 
-    [HttpGet("person/{userId:long}")]
+   /* [HttpGet("person/{userId:long}")]
     public ActionResult<PersonResponseDto> GetByUserId(long userId)
     {
         var result = _personService.GetByUserId(userId);
         return CreateResponse(result);
-    }
+    }*/
 
-    [HttpGet("follower/search/{searchUsername}")]
+   /* [HttpGet("follower/search/{searchUsername}")]
     public ActionResult<PagedResult<UserResponseDto>> GetSearch([FromQuery] int page, [FromQuery] int pageSize, string searchUsername)
     {
         //long userId = int.Parse(HttpContext.User.Claims.First(i => i.Type.Equals("id", StringComparison.OrdinalIgnoreCase)).Value);
@@ -66,6 +66,6 @@ public class PersonController : BaseApiController
 
         var result = _userService.SearchUsers(0, 0, searchUsername, userId);
         return CreateResponse(result);
-    }
+    }*/
 
 }

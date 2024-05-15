@@ -8,7 +8,10 @@ package Authorize;
 service Authorize {
   rpc Authorize (Credentials) returns (AuthenticationTokens) {
   }
-  rpc GetSearch(SearchUsernameA) returns (ListUserResponseDtoA) {}
+  rpc GetSearch(SearchUsernameA) returns (ListUserResponseDtoA) {
+  }
+  rpc GetByUserId(UserId) returns (PersonResponseDtoA) {
+  }
 }
 
 // The request message containing the user's name.
@@ -23,26 +26,64 @@ message AuthenticationTokens {
   string accessToken = 2;
 }
 
-message UserResponseDtoA{
-     int64 Id =1;
-         string Username =2;
-         string ProfilePicture =3;
-         int32 Role =4;
-         bool IsActive =5;
-         repeated FollowerCreateDtoA Followers=6;
-}
+
 message FollowerCreateDtoA{
      int64 UserId =1;
-         int64 FollowedById =2;
+     int64 FollowedById =2;
 }
+
+
+
+
+message ListUserResponseDtoA {
+    repeated UserResponseDtoA ResponseList=1 ;
+}
+
+
+
 
 message SearchUsernameA {
     string SearchUsername=1;
     string UserId=2;
 }
 
-
-message ListUserResponseDtoA {
-    repeated UserResponseDtoA ResponseList=1 ;
+message UserResponseDtoA{
+     int64 Id =1;
+     string Username =2;
+     string ProfilePicture =3;
+     int32 Role =4;
+     bool IsActive =5;
+     repeated FollowerCreateDtoA Followers=6;
 }
+
+message PersonResponseDtoA{
+    int64 Id =1;
+    int64 UserId =2;
+    string Name =3;
+    string Surname =4;
+    string Email =5;
+    UserResponseDtoA User =6;
+    string Bio =7;
+    string Motto =8;
+}
+
+message UserId {
+    int64 UsersId = 1;;
+}
+
+/*
+[HttpGet("follower/search/{searchUsername}")]
+    public ActionResult<PagedResult<UserResponseDto>> GetSearch([FromQuery] int page, [FromQuery] int pageSize, string searchUsername)
+    {
+        //long userId = int.Parse(HttpContext.User.Claims.First(i => i.Type.Equals("id", StringComparison.OrdinalIgnoreCase)).Value);
+        long userId = 0;
+        var identity = HttpContext.User.Identity as ClaimsIdentity;
+        if (identity != null && identity.IsAuthenticated)
+        {
+            userId = long.Parse(identity.FindFirst("id").Value);
+        }
+
+        var result = _userService.SearchUsers(0, 0, searchUsername, userId);
+        return CreateResponse(result);
+    }*/
 
