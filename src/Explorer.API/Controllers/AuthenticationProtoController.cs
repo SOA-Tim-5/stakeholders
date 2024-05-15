@@ -63,7 +63,7 @@ namespace Explorer.API.Controllers
             }
             return await Task.FromResult(new ListUserResponseDtoA { ResponseList = { results } });
         }
-
+        
         public override async Task<GrpcServiceTranscoding.PersonResponseDtoA> GetByUserId(UserId request,
             ServerCallContext context)
         {
@@ -87,10 +87,8 @@ namespace Explorer.API.Controllers
                     Role = result.User.Role
                 },
                 Bio = result.Bio,
-                Motto = result.Motto
             });
        }
-        
        
     }
 }
